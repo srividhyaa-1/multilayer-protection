@@ -62,10 +62,11 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-        if user.is_superuser:
-            return redirect('admin_dashboard')
-        else:
-            return redirect('dashboard')
+
+            if user.is_superuser:
+                return redirect('admin_dashboard')
+            else:
+                return redirect('dashboard')
 
         return render(request, 'login.html', {
             'error': 'Invalid username or password'
