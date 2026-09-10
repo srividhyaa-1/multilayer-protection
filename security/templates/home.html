@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Multi-Layer Protection</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            background: #071a33;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            color: white;
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: #4da3ff;
+        }
+
+        .nav-security {
+            color: #cbd8e8;
+            font-size: 13px;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(7, 26, 51, 0.12);
+        }
+
+        /* LEFT SIDE */
+
+        .left-section {
+            background: linear-gradient(135deg, #071a33, #0b376d);
+            color: white;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .security-icon {
+            width: 65px;
+            height: 65px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .left-section h1 {
+            font-size: 38px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .left-section h1 span {
+            color: #4da3ff;
+        }
+
+        .left-section p {
+            color: #d5e2f1;
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 520px;
+            margin-bottom: 30px;
+        }
+
+        .security-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .point {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .point strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .point small {
+            color: #c5d5e7;
+            font-size: 12px;
+        }
+
+        /* RIGHT SIDE */
+
+        .right-section {
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-section h2 {
+            color: #071a33;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #68778a;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        /* OPTIONS */
+
+        .option {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 18px;
+            margin-bottom: 14px;
+            border-radius: 12px;
+            border: 1px solid #dce4ee;
+            background: #ffffff;
+            transition: 0.25s;
+        }
+
+        .option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(7, 26, 51, 0.1);
+            border-color: #4da3ff;
+        }
+
+        .option-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 21px;
+        }
+
+        .login-icon {
+            background: #e8f3ff;
+        }
+
+        .register-icon {
+            background: #eaf8f1;
+        }
+
+        .admin-icon {
+            background: #f0edff;
+        }
+
+        .option-text {
+            flex: 1;
+        }
+
+        .option-text strong {
+            display: block;
+            color: #172033;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .option-text span {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .arrow {
+            color: #52708f;
+            font-size: 20px;
+        }
+
+        /* ADMIN */
+
+        .admin {
+            background: #f9f9ff;
+        }
+
+        /* FOOTER */
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #8a97a8;
+            font-size: 12px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-section {
+                padding: 40px 30px;
+            }
+
+            .right-section {
+                padding: 40px 30px;
+            }
+
+            .left-section h1 {
+                font-size: 30px;
+            }
+
+            .security-points {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-security {
+                display: none;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .navbar {
+                padding: 16px 20px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .hero {
+                padding: 25px 12px;
+            }
+
+            .left-section,
+            .right-section {
+                padding: 30px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        🔐 Multi-Layer <span>Protection</span>
+    </div>
+
+    <div class="nav-security">
+        Secure Data Management System
+    </div>
+
+</div>
+
+
+<!-- MAIN HERO -->
+
+<div class="hero">
+
+    <div class="main-container">
+
+        <!-- LEFT SECTION -->
+
+        <div class="left-section">
+
+            <div class="security-icon">
+                🔒
+            </div>
+
+            <h1>
+                Protect Your
+                <span>Sensitive Data</span>
+            </h1>
+
+            <p>
+                A secure data protection system designed to protect
+                sensitive vendor and client information through
+                encryption, controlled access and secure key management.
+            </p>
+
+            <div class="security-points">
+
+                <div class="point">
+                    <strong>🔐 Data Encryption</strong>
+                    <small>
+                        Sensitive files are protected using encryption.
+                    </small>
+                </div>
+
+                <div class="point">
+                    <strong>🛡️ Secure Access</strong>
+                    <small>
+                        Access is controlled for authorized users.
+                    </small>
+                </div>
+
+                <div class="point">
+                    <strong>🔑 Key Control</strong>
+                    <small>
+                        Encryption keys are managed securely.
+                    </small>
+                </div>
+
+                <div class="point">
+                    <strong>📁 Data Protection</strong>
+                    <small>
+                        Important files remain protected from unauthorized access.
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SECTION -->
+
+        <div class="right-section">
+
+            <h2>
+                Welcome
+            </h2>
+
+            <p class="subtitle">
+                Choose an option below to access the
+                Multi-Layer Protection system.
+            </p>
+
+
+            <!-- VENDOR / CLIENT LOGIN -->
+
+            <a href="{% url 'login' %}" class="option">
+
+                <div class="option-icon login-icon">
+                    👤
+                </div>
+
+                <div class="option-text">
+                    <strong>Vendor / Client Login</strong>
+
+                    <span>
+                        Sign in to access your secure dashboard
+                    </span>
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- VENDOR / CLIENT REGISTRATION -->
+
+            <a href="{% url 'register' %}" class="option">
+
+                <div class="option-icon register-icon">
+                    📝
+                </div>
+
+                <div class="option-text">
+                    <strong>Vendor / Client Registration</strong>
+
+                    <span>
+                        Create a new secure account
+                    </span>
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- ADMIN LOGIN -->
+
+            <a href="{% url 'admin_login' %}" class="option admin">
+
+                <div class="option-icon admin-icon">
+                    🛡️
+                </div>
+
+                <div class="option-text">
+                    <strong>Admin Login</strong>
+
+                    <span>
+                        Authorized administrators only
+                    </span>
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <div class="footer-text">
+                Multi-Layered Protection for Data Consistency
+                and Regulatory Alignment
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

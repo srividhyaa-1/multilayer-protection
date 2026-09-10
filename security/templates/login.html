@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Multi-Layer Protection</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #071a33, #0b3b68, #087ea4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 950px;
+            max-width: 100%;
+            min-height: 560px;
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.30);
+        }
+
+        /* LEFT SIDE */
+
+        .left-panel {
+            width: 48%;
+            background: linear-gradient(160deg, #082b52, #075985);
+            color: white;
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 62px;
+            height: 62px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .left-panel h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .left-panel h1 span {
+            color: #5eead4;
+        }
+
+        .left-panel p {
+            color: #dbeafe;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 14px;
+            color: #e0f2fe;
+        }
+
+        .security-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 17px;
+        }
+
+        /* RIGHT SIDE */
+
+        .right-panel {
+            width: 52%;
+            padding: 55px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-title {
+            color: #102a43;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #243b53;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-box span {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 17px;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 50px;
+            border: 1px solid #d8dee9;
+            border-radius: 10px;
+            padding: 0 15px 0 45px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #0784a8;
+            box-shadow: 0 0 0 3px rgba(7, 132, 168, 0.12);
+        }
+
+        .login-button {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #075985, #0891b2);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.30);
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .register-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .register-text a {
+            color: #087ea4;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .login-container {
+                flex-direction: column;
+            }
+
+            .left-panel,
+            .right-panel {
+                width: 100%;
+            }
+
+            .left-panel {
+                padding: 35px;
+            }
+
+            .left-panel h1 {
+                font-size: 27px;
+            }
+
+            .right-panel {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <!-- LEFT PANEL -->
+
+    <div class="left-panel">
+
+        <div class="logo">🔐</div>
+
+        <h1>
+            Multi-Layered<br>
+            <span>Protection</span>
+        </h1>
+
+        <p>
+            Secure access to your organization's sensitive
+            information with multi-layered data protection.
+        </p>
+
+        <div class="security-item">
+            <div class="security-icon">🔒</div>
+            <span>Secure data protection</span>
+        </div>
+
+        <div class="security-item">
+            <div class="security-icon">🛡️</div>
+            <span>Authorized access control</span>
+        </div>
+
+        <div class="security-item">
+            <div class="security-icon">🔑</div>
+            <span>Protected encryption keys</span>
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT PANEL -->
+
+    <div class="right-panel">
+
+        <h2 class="login-title">Welcome Back</h2>
+
+        <p class="login-subtitle">
+            Sign in to access your secure account
+        </p>
+
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+
+                <label for="username">Username</label>
+
+                <div class="input-box">
+
+                    <span>👤</span>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">Password</label>
+
+                <div class="input-box">
+
+                    <span>🔑</span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="login-button">
+                Sign In Securely
+            </button>
+
+        </form>
+
+
+        <div class="register-text">
+            Don't have an account?
+            <a href="{% url 'register' %}">Create an account</a>
+        </div>
+
+        <div class="footer-text">
+            © 2026 Multi-Layer Protection • Secure Data Management
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

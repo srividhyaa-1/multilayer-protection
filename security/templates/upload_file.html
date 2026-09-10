@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Sensitive File</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            height: 70px;
+            background: #071a3d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #a9c7ff;
+            margin-top: 4px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            background: #1769e0;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            background: #0d55bd;
+        }
+
+        /* MAIN */
+        .container {
+            max-width: 850px;
+            margin: 55px auto;
+            padding: 0 20px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            color: #071a3d;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #667085;
+            font-size: 15px;
+        }
+
+        /* UPLOAD CARD */
+        .upload-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(7, 26, 61, 0.10);
+            border: 1px solid #e2e8f0;
+        }
+
+        .security-banner {
+            background: #eef5ff;
+            border-left: 5px solid #1769e0;
+            padding: 16px 18px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .security-banner h3 {
+            color: #0b4ea2;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .security-banner p {
+            color: #526071;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* FILE AREA */
+        .file-area {
+            border: 2px dashed #9db7df;
+            border-radius: 12px;
+            padding: 45px 20px;
+            text-align: center;
+            background: #f8fbff;
+            transition: 0.3s;
+        }
+
+        .file-area:hover {
+            border-color: #1769e0;
+            background: #f1f7ff;
+        }
+
+        .file-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .file-area h2 {
+            color: #172033;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .file-area p {
+            color: #667085;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d0d7e2;
+            border-radius: 7px;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* BUTTON */
+        .upload-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #1769e0;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .upload-btn:hover {
+            background: #0d55bd;
+        }
+
+        /* MESSAGE */
+        .message {
+            margin-top: 20px;
+            padding: 14px;
+            background: #e8f7ee;
+            color: #176b3a;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* SECURITY INFO */
+        .security-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .info-box {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .info-box h4 {
+            color: #071a3d;
+            margin-bottom: 7px;
+            font-size: 15px;
+        }
+
+        .info-box p {
+            color: #667085;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .container {
+                margin: 35px auto;
+            }
+
+            .upload-card {
+                padding: 25px;
+            }
+
+            .security-info {
+                grid-template-columns: 1fr;
+            }
+
+            .subtitle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div>
+        <div class="logo">Multi-Layer Protection</div>
+        <div class="subtitle">Secure Data Management System</div>
+    </div>
+
+    <a href="{% url 'dashboard' %}" class="back-btn">
+        ← Dashboard
+    </a>
+</div>
+
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <div class="heading">
+        <h1>Upload Sensitive File</h1>
+        <p>Protect your sensitive business data using secure encryption.</p>
+    </div>
+
+
+    <div class="upload-card">
+
+        <!-- SECURITY MESSAGE -->
+        <div class="security-banner">
+            <h3>🔐 Secure File Protection</h3>
+            <p>
+                Your uploaded file will be encrypted using the
+                DES encryption algorithm before it is stored in the system.
+                Only authorized users can request access to the decryption key.
+            </p>
+        </div>
+
+
+        <!-- UPLOAD FORM -->
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="file-area">
+
+                <div class="file-icon">📁</div>
+
+                <h2>Select Sensitive File</h2>
+
+                <p>
+                    Choose the file you want to securely upload and encrypt.
+                </p>
+
+                <input type="file" name="file" required>
+
+            </div>
+
+            <button type="submit" class="upload-btn">
+                🔒 Encrypt & Upload File
+            </button>
+
+        </form>
+
+
+        <!-- SUCCESS MESSAGE -->
+        {% if message %}
+            <div class="message">
+                ✓ {{ message }}
+            </div>
+        {% endif %}
+
+    </div>
+
+
+    <!-- SECURITY FEATURES -->
+    <div class="security-info">
+
+        <div class="info-box">
+            <h4>🔐 Encryption</h4>
+            <p>
+                Files are encrypted before being stored in the system.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h4>🛡️ Protected Access</h4>
+            <p>
+                Decryption access requires authorization from Admin.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h4>🔑 Key Control</h4>
+            <p>
+                The encryption key is managed through the authorization process.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

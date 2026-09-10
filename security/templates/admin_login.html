@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | Multi-Layer Protection</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #06172d, #0b3154, #0d5b91);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 850px;
+            max-width: 92%;
+            min-height: 500px;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        }
+
+        /* LEFT */
+
+        .left {
+            width: 48%;
+            background: linear-gradient(160deg, #06172d, #0b426d);
+            color: white;
+            padding: 55px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .shield {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .left h1 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .left h1 span {
+            color: #42a5f5;
+        }
+
+        .left p {
+            color: #c8d8e8;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .security-item {
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .security-item span {
+            color: #42a5f5;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* RIGHT */
+
+        .right {
+            width: 52%;
+            padding: 50px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right h2 {
+            color: #14253d;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .admin-label {
+            background: #eaf3fb;
+            color: #0b4f7c;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 7px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d5dee8;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            border-color: #2196f3;
+            box-shadow: 0 0 0 3px rgba(33,150,243,0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #1268a3;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #0b4f7c;
+        }
+
+        .error {
+            background: #fdecec;
+            color: #c0392b;
+            padding: 10px;
+            border-radius: 7px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #1268a3;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            color: #9aa6b2;
+            font-size: 11px;
+            margin-top: 22px;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left,
+            .right {
+                width: 100%;
+            }
+
+            .left {
+                padding: 35px;
+            }
+
+            .right {
+                padding: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+
+    <div class="left">
+
+        <div class="shield">🛡️</div>
+
+        <h1>
+            Admin <span>Security</span>
+        </h1>
+
+        <p>
+            Secure administrator access for managing users,
+            encrypted files, key requests and authorization
+            within the Multi-Layer Protection system.
+        </p>
+
+        <div class="security-item">
+            <span>✓</span> Secure Administrator Access
+        </div>
+
+        <div class="security-item">
+            <span>✓</span> Key Request Management
+        </div>
+
+        <div class="security-item">
+            <span>✓</span> Authorization Control
+        </div>
+
+        <div class="security-item">
+            <span>✓</span> Protected Data Management
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="right">
+
+        <h2>Admin Login</h2>
+
+        <p class="subtitle">
+            Sign in to access the administrator dashboard
+        </p>
+
+        <div class="admin-label">
+            🛡️ Administrator Access Only
+        </div>
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter admin username"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter admin password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-btn">
+                🔐 Secure Admin Login
+            </button>
+
+        </form>
+
+        <div class="back-link">
+            <a href="{% url 'home' %}">← Back to Main Page</a>
+        </div>
+
+        <div class="footer">
+            © 2026 Multi-Layer Protection • Secure Data Management System
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
